@@ -96,16 +96,14 @@ function getFirstChar(value) {
  *   '\tHello, World! ' => 'Hello, World!'
  */
 function removeLeadingAndTrailingWhitespaces(value) {
-  let len = value.length;
-  while (value[0] === ' ') {
-    value = value.slice(1, len);
-    len = len - 1;
+  let s = value;
+  while (s[0] === ' ' || s[0] === '\t') {
+    s = s.slice(1, s.length);
   }
-  while (value[len - 1] === ' ') {
-    value = value.slice(0, len - 1);
-    len = len - 1;
+  while (s[s.length - 1] === ' ' || s[s.length - 1] === '\t') {
+    s = s.slice(0, s.length - 1);
   }
-  return value;
+  return s;
 }
 
 /**
@@ -119,10 +117,15 @@ function removeLeadingAndTrailingWhitespaces(value) {
  *   'A', 5  => 'AAAAA'
  *   'cat', 3 => 'catcatcat'
  */
-function repeatString(/* value, count */) {
-  throw new Error('Not implemented');
+/* eslint-disable */
+function repeatString(value, count) {
+  let s = '';
+  for (let i = 0; i < count; i++) {
+    s = s + value;
+  }
+  return s;
 }
-
+/* eslint-disable */
 /**
  * Remove the first occurrence of string inside another string
  *
