@@ -138,10 +138,14 @@ function repeatString(value, count) {
  *   'I like legends', 'end' => 'I like legs',
  *   'ABABAB','BA' => 'ABAB'
  */
-function removeFirstOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+/* eslint-disable */
+function removeFirstOccurrences(str, value) {
+  let n = str.indexOf(value);
+  let s = str.substr(n, value.length);
+  str = str.replace(s, "");
+  return str;
 }
-
+/* eslint-disable */
 /**
  * Remove the first and last angle brackets from tag string
  *
@@ -153,10 +157,12 @@ function removeFirstOccurrences(/* str, value */) {
  *   '<span>' => 'span'
  *   '<a>' => 'a'
  */
-function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+/* eslint-disable */
+function unbracketTag(str) {
+  str = str.substr(1, str.length - 2);
+  return str;
 }
-
+/* eslint-disable */
 
 /**
  * Converts all characters of the specified string into the upper case
@@ -168,10 +174,11 @@ function unbracketTag(/* str */) {
  *   'Thunderstruck' => 'THUNDERSTRUCK'
  *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
  */
-function convertToUpperCase(/* str */) {
-  throw new Error('Not implemented');
+/* eslint-disable */
+function convertToUpperCase(str) {
+  return str.toUpperCase();
 }
-
+/* eslint-disable */
 /**
  * Extracts e-mails from single string with e-mails list delimeted by semicolons
  *
@@ -187,10 +194,11 @@ function convertToUpperCase(/* str */) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+/* eslint-disable */
+function extractEmails(str) {
+  return str.split(";");
 }
-
+/* eslint-disable */
 /**
  * Returns the string representation of rectangle with specified width and height
  * using pseudograhic chars
@@ -214,8 +222,29 @@ function extractEmails(/* str */) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleString(width, height) {
+  debugger;
+  let s = "";
+    for (let i = 0; i < height; i++) {
+        for (let j = 0; j < width; j++) {
+            if(j == 0 && i == 0)
+                s += "┌";
+            else if (j == width - 1 && i == 0)
+                s += "┐\n";
+            else if (j == 0 && i == height - 1)
+                s += "└";
+            else if (j == width - 1 && i == height - 1)
+                s += "┘\n";
+            else if (j == 0)
+                s += "│";
+            else if (j == width - 1)
+                s += "│\n";
+            else if (i == 0 || i == height - 1)
+                s += "─";
+            else s += " ";
+        }
+    }
+    return s;
 }
 
 
@@ -231,14 +260,32 @@ function getRectangleString(/* width, height */) {
  *   'hello' => 'uryyb'
  *   'Why did the chicken cross the road?' => 'Jul qvq gur puvpxra pebff gur ebnq?'
  *   'Gb trg gb gur bgure fvqr!' => 'To get to the other side!'
- *   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+ *       'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+/* eslint-disable */
+function encodeToRot13(str) {
+  //debugger;
+  let s = str.toLowerCase();
+  let alphabet = "abcdefghijklmnopqrstuvwxyz";
+  let isLetter = /^[A-Za-z]+$/;
+  let res = "";
+  let isSmall;
+  for (let i = 0; i < str.length; i++) {
+    if (!isLetter.test(str[i])) {
+      res += str[i];
+      continue;
+    }
+    isSmall = /^[a-z]+$/.test(str[i]);
+    let n = (alphabet.indexOf(s[i]) + 13) % 26;
+    if (isSmall)
+      res += alphabet[n];
+    else res += alphabet[n].toUpperCase();
+  }
+  return res;
 }
-
+/* eslint-disable */
 /**
  * Returns true if the value is string; otherwise false.
  * @param {string} value
@@ -252,10 +299,13 @@ function encodeToRot13(/* str */) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+/* eslint-disable */
+function isString(value) {
+  if (typeof(value) == "undefined" || value == null)
+    return false;
+  return (typeof(value) == "string" || value.__proto__.constructor == String) ? true : false;
 }
-
+/* eslint-disable */
 
 /**
  * Returns playid card id.
@@ -281,10 +331,15 @@ function isString(/* value */) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+/* eslint-disable */
+function getCardId(value) {
+  let cards = ['A♣','2♣','3♣','4♣','5♣','6♣','7♣','8♣','9♣','10♣','J♣','Q♣','K♣',
+    'A♦','2♦','3♦','4♦','5♦','6♦','7♦','8♦','9♦','10♦','J♦','Q♦','K♦',
+    'A♥','2♥','3♥','4♥','5♥','6♥','7♥','8♥','9♥','10♥','J♥','Q♥','K♥',
+    'A♠','2♠','3♠','4♠','5♠','6♠','7♠','8♠','9♠','10♠','J♠','Q♠','K♠'];
+  return cards.indexOf(value);
 }
-
+/* eslint-disable */
 
 module.exports = {
   concatenateStrings,
