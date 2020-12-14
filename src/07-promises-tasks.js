@@ -28,10 +28,19 @@
  *      .catch((error) => console.log(error.message)) // 'Error: Wrong parameter is passed!
  *                                                    //  Ask her again.';
  */
-function willYouMarryMe(/* isPositiveAnswer */) {
-  throw new Error('Not implemented');
+/* eslint-disable */
+function willYouMarryMe(isPositiveAnswer) {
+  return new Promise(function(resolve, reject) {
+    debugger;
+    if (typeof(isPositiveAnswer) != "boolean")
+      setTimeout(() => reject(new Error("Wrong parameter is passed! Ask her again.")), 0);
+    else if(isPositiveAnswer)
+      setTimeout(() => resolve('Hooray!!! She said "Yes"!'), 0);
+    else
+      setTimeout(() => resolve('Oh no, she said \"No\".'), 0);
+  })
 }
-
+/* eslint-disable */
 
 /**
  * Return Promise object that should be resolved with array containing plain values.
@@ -48,10 +57,11 @@ function willYouMarryMe(/* isPositiveAnswer */) {
  *    })
  *
  */
-function processAllPromises(/* array */) {
-  throw new Error('Not implemented');
+/* eslint-disable */
+function processAllPromises(array) {
+  return Promise.all(array);
 }
-
+/* eslint-disable */
 /**
  * Return Promise object that should be resolved with value received from
  * Promise object that will be resolved first.

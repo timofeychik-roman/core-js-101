@@ -20,10 +20,11 @@
  *    console.log(r.height);      // => 20
  *    console.log(r.getArea());   // => 200
  */
+/* eslint-disable */
 function Rectangle(/* width, height */) {
   throw new Error('Not implemented');
 }
-
+/* eslint-disable */
 
 /**
  * Returns the JSON representation of specified object
