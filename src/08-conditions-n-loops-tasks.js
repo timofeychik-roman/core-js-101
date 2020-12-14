@@ -43,10 +43,13 @@ function getFizzBuzz(/* num */) {
  *   5  => 120
  *   10 => 3628800
  */
-function getFactorial(/* n */) {
-  throw new Error('Not implemented');
+/* eslint-disable */
+function getFactorial(n) {
+  if (n == 1)
+    return 1;
+  else return n * getFactorial(n - 1);
 }
-
+/* eslint-disable */
 
 /**
  * Returns the sum of integer numbers between n1 and n2 (inclusive).
@@ -80,10 +83,13 @@ function getSumBetweenNumbers(/* n1, n2 */) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+/* eslint-disable */
+function isTriangle(a, b, c) {
+  if (a >= b + c || b >= a + c || c >= a + b)
+    return false;
+  else return true;
 }
-
+/* eslint-disable */
 
 /**
  * Returns true, if two specified axis-aligned rectangles overlap, otherwise false.
